@@ -52,16 +52,25 @@ def checkBoxes(s,f):
     wrong = []
     for z in range(1,10):
       if z not in na:
-        # For each 0, check horizontally, then vertically
-        for a in zeroes:
-          for b in range(0,9):
-            if table[b][a[1]] == z:
-              wrong.append([a,z])
-        if len(wrong) == 2:
-          print "You fuck up hard (checkBoxes)"
-        elif len(wrong) == 1:
-          for c in zeroes:
-            if c != wrong[0]
+        # For each 0, if in seperate columns check vertically, if in seperate rows check horizontally
+        if zeroes[0][1] != zeroes[1][1]:
+          for a in zeroes:
+            for b in range(0,9):
+              if table[b][a[1]] == z:
+                a.append(z)
+          if len(zeroes[0]) == 3:
+            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+          if len(zeroes[1]) == 3:
+            table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+        if zeroes[0][0] != zeroes[1][0]:
+          for a in zeroes:
+            for b in range(0,9):
+              if table[a[0]][b] == z:
+                a.append(z)
+          if len(zeroes[0]) == 3:
+            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+          if len(zeroes[1]) == 3:
+            table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
 
 # For use in vertWork()
 def compareHorizontal(s,f,y,z):
