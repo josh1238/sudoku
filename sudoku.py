@@ -69,6 +69,7 @@ def checkBoxes(s,f,d,e):
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
           elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+    checkBoxes(s,f,d,e)
 
 # For use in vertWork()
 def compareHorizontal(s,f,y,z):
@@ -359,8 +360,6 @@ def vertWork(x,y):
         elif ax > 2 and ax < 6:
           compareHorizontal(0,3,qy,z)
 
-printTable()
-solve()
 printTable()
 solve()
 printTable()
