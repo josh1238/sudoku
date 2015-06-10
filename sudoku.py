@@ -34,12 +34,12 @@ elif len(sys.argv) == 2:
       nein = 0
 
 # For use in solve()
-def checkBoxes(s,f):
+def checkBoxes(s,f,d,e):
   global table
   zeroes = []
   na = []
   for x in range(s,f):
-    for y in range(s,f):
+    for y in range(d,e):
       if table[x][y] == 0:
         zeroes.append([x,y])
       else:
@@ -49,10 +49,8 @@ def checkBoxes(s,f):
       if z not in na:
         table[zeroes[0][0]][zeroes[0][1]] = z
   if len(zeroes) == 2:
-    wrong = []
     for z in range(1,10):
       if z not in na:
-        # For each 0, if in seperate columns check vertically, if in seperate rows check horizontally
         if zeroes[0][1] != zeroes[1][1]:
           for a in zeroes:
             for b in range(0,9):
@@ -69,7 +67,7 @@ def checkBoxes(s,f):
                 a.append(z)
           if len(zeroes[0]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
-          if len(zeroes[1]) == 3:
+          elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
 
 # For use in vertWork()
@@ -269,7 +267,11 @@ def solve():
       horzWork(x,y)
   for z in range(0,10,3):
     for a in range(0,10,3):
-      checkBoxes(z,a)
+      if a - z == 3:
+        for b in range(0,10,3):
+          for c in range(0,10,3):
+            if c - b == 3:
+              checkBoxes(z,a,b,c)
 
 # For use in solve()
 def vertWork(x,y):
@@ -357,6 +359,8 @@ def vertWork(x,y):
         elif ax > 2 and ax < 6:
           compareHorizontal(0,3,qy,z)
 
+printTable()
+solve()
 printTable()
 solve()
 printTable()
