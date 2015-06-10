@@ -69,7 +69,73 @@ def checkBoxes(s,f,d,e):
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
           elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
-    checkBoxes(s,f,d,e)
+#    checkBoxes(s,f,d,e)
+  if len(zeroes) == 3:
+    for z in range(1,10):
+      if z not in na:
+        # if zero is in its own column, check that z is in both other 0 columns
+        if zeroes[0][1] != zeroes[1][1] and zeroes[0][1] != zeroes[2][1]:
+          for a in zeroes:
+            if a != zeroes[0]:
+              for b in range(0,9):
+                if table[b][a[1]] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
+            table[zeroes[0][0]][zeroes[0][1]] = z
+        if zeroes[1][1] != zeroes[0][1] and zeroes[1][1] != zeroes[2][1]:
+          for a in zeroes:
+            if a != zeroes[1]:
+              for b in range(0,9):
+                if table[b][a[1]] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
+            table[zeroes[1][0]][zeroes[1][1]] = z
+        if zeroes[2][1] != zeroes[0][1] and zeroes[2][1] != zeroes[1][1]:
+          for a in zeroes:
+            if a != zeroes[2]:
+              for b in range(0,9):
+                if table[b][a[1]] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
+            table[zeroes[2][0]][zeroes[2][1]] = z
+        # if zero is in its own row, check that z is in both other 0 rows
+        if zeroes[0][0] != zeroes[1][0] and zeroes[0][0] != zeroes[2][0]:
+          for a in zeroes:
+            if a != zeroes[0]:
+              for b in range(0,9):
+                if table[a[0]][b] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
+            table[zeroes[0][0]][zeroes[0][1]] = z
+        if zeroes[1][0] != zeroes[0][0] and zeroes[1][0] != zeroes[2][0]:
+          for a in zeroes:
+            if a != zeroes[1]:
+              for b in range(0,9):
+                if table[a[0]][b] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
+            table[zeroes[1][0]][zeroes[1][1]] = z
+        if zeroes[2][0] != zeroes[0][0] and zeroes[2][0] != zeroes[1][0]:
+          for a in zeroes:
+            if a != zeroes[2]:
+              for b in range(0,9):
+                if table[a[0]][b] == z:
+                  a.append(z)
+            else:
+              pass
+          if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
+            table[zeroes[2][0]][zeroes[2][1]] = z
+#    checkBoxes(s,f,d,e)
 
 # For use in vertWork()
 def compareHorizontal(s,f,y,z):
