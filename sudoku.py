@@ -32,6 +32,11 @@ elif len(sys.argv) == 2:
     if nein == 9:
       row += 1
       nein = 0
+last = '0'
+line = ''
+for y in table:
+  for z in y:
+    line += str(z)
 
 # For use in solve()
 # Check each box for low amount of 0s
@@ -323,14 +328,17 @@ def printTable():
     tres += 1
     if tres == 9:
       print '-' * 25
-  for x in table:
-    for a in x:
-      line += str(a)
-  print line
+  print ''
 
 # Solve with different perspectives
 def solve():
   global table
+  global line
+  global last
+  last = ''
+  for d in table:
+    for e in d:
+      last += str(e)
   for x in range(0,9):
     for y in range(0,9):
       vertWork(x,y)
@@ -342,6 +350,10 @@ def solve():
           for c in range(0,10,3):
             if c - b == 3:
               checkBoxes(z,a,b,c)
+  line = ''
+  for d in table:
+    for e in d:
+      line += str(e)
 
 # For use in solve()
 def vertWork(x,y):
@@ -429,6 +441,7 @@ def vertWork(x,y):
         elif ax > 2 and ax < 6:
           compareHorizontal(0,3,qy,z)
 
-printTable()
-solve()
-printTable()
+while line != last:
+  if '0' in line:
+    printTable()
+    solve()
