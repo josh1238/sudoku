@@ -34,6 +34,7 @@ elif len(sys.argv) == 2:
       nein = 0
 
 # For use in solve()
+# Check each box for low amount of 0s
 def checkBoxes(s,f,d,e):
   global table
   zeroes = []
@@ -41,49 +42,49 @@ def checkBoxes(s,f,d,e):
   for x in range(s,f):
     for y in range(d,e):
       if table[x][y] == 0:
-        zeroes.append([x,y])
+        zeroes.append([x,y])    # List of x,y coordinates for 0s
       else:
-        na.append(table[x][y])
+        na.append(table[x][y])  # Not available, get it? (Value in spot)
   if len(zeroes) == 1:
     for z in range(1,10):
       if z not in na:
-        table[zeroes[0][0]][zeroes[0][1]] = z
+        table[zeroes[0][0]][zeroes[0][1]] = z # If only 1 0, set it to missing value
   if len(zeroes) == 2:
     for z in range(1,10):
       if z not in na:
-        if zeroes[0][1] != zeroes[1][1]:
+        if zeroes[0][1] != zeroes[1][1]:  # If 0s are in different columns
           for a in zeroes:
             for b in range(0,9):
-              if table[b][a[1]] == z:
-                a.append(z)
+              if table[b][a[1]] == z: # If missing number is in same row,
+                a.append(z)           # Append this value to x,y coords
           if len(zeroes[0]) == 3:
-            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
           if len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
-        if zeroes[0][0] != zeroes[1][0]:
+        if zeroes[0][0] != zeroes[1][0]:  # If 0s are in different rows
           for a in zeroes:
             for b in range(0,9):
-              if table[a[0]][b] == z:
-                a.append(z)
+              if table[a[0]][b] == z: # If missing number is in same column,
+                a.append(z)           # Append value to x,y coords
           if len(zeroes[0]) == 3:
-            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+            table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
           elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
 #    checkBoxes(s,f,d,e)
   if len(zeroes) == 3:
     for z in range(1,10):
       if z not in na:
-        # if zero is in its own column, check that z is in both other 0 columns
+        # If 0 is alone in column
         if zeroes[0][1] != zeroes[1][1] and zeroes[0][1] != zeroes[2][1]:
           for a in zeroes:
-            if a != zeroes[0]:
+            if a != zeroes[0]:      # Other 0s
               for b in range(0,9):
-                if table[b][a[1]] == z:
-                  a.append(z)
+                if table[b][a[1]] == z: # If value is in column,
+                  a.append(z)           # Append value to x,y coords
             else:
               pass
-          if len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
-            table[zeroes[0][0]][zeroes[0][1]] = z
+          if len(zeroes[1]) == 3 and len(zeroes[2]) == 3: # If both others matched
+            table[zeroes[0][0]][zeroes[0][1]] = z         # Set value
         if zeroes[1][1] != zeroes[0][1] and zeroes[1][1] != zeroes[2][1]:
           for a in zeroes:
             if a != zeroes[1]:
@@ -104,7 +105,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
             table[zeroes[2][0]][zeroes[2][1]] = z
-        # if zero is in its own row, check that z is in both other 0 rows
+        # If 0 is alone in row
         if zeroes[0][0] != zeroes[1][0] and zeroes[0][0] != zeroes[2][0]:
           for a in zeroes:
             if a != zeroes[0]:
@@ -138,23 +139,24 @@ def checkBoxes(s,f,d,e):
 #    checkBoxes(s,f,d,e)
 
 # For use in vertWork()
+# Box, column, value
 def compareHorizontal(s,f,y,z):
   global table
   qx = []
   wrong = []
   for c in range(s,f):
-    if table[c][y] == 0:
+    if table[c][y] == 0:  # Collect 0s as possible x value
       qx.append(c)
   if len(qx) == 1:
-    table[qx[0]][y] = z
+    table[qx[0]][y] = z   # If 1 0 set as value
   elif len(qx) == 2:
     for d in qx:
       for e in range(0,9):
-        if table[d][e] == z:
+        if table[d][e] == z:  # For each 0 check row for match
           wrong.append(d)
     if len(wrong) == 2:
       print "You fucked up hard (compHorz)"
-    elif len(wrong) == 1:
+    elif len(wrong) == 1:   # If 1 is wrong, set other as value
       for g in qx:
         if g == wrong[0]:
           continue
@@ -216,6 +218,7 @@ def compareVertical(s,f,x,z):
       pass
 
 # For use in solve()
+# Look for 2 values horizontally
 def horzWork(x,y):
   global table
   if table[x][y] != 0:
@@ -240,7 +243,7 @@ def horzWork(x,y):
             by = b
             cnt += 1
     if cnt == 2:
-      if x == 0:
+      if x == 0:      # Determin row of missing value
         if ax == 1:
           qx = 2
         elif ax == 2:
@@ -285,7 +288,7 @@ def horzWork(x,y):
           qx = 7
         elif ax == 7:
           qx = 6
-      if y < 3:
+      if y < 3:                     # Determine box
         if by > 2 and by < 6:
           compareVertical(6,9,qx,z) # Box, row, value
         elif by > 5:
