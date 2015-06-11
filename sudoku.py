@@ -223,6 +223,46 @@ def compareVertical(s,f,x,z):
       pass
 
 # For use in solve()
+# Look for low # of 0s in row
+def horzLine(x):
+  global table
+  zeroes = []
+  na = []
+  for y in range(0,9):
+    if table[x][y] == 0:
+      zeroes.append([x,y])
+    else:
+      na.append(table[x][y])
+  if len(zeroes) == 1:
+    for z in range(1,10):
+      if z not in na:
+        table[zeroes[0][0]][zeroes[0][1]] = z
+  elif len(zeroes) == 2:
+    for z in range(1,10):
+      if z not in na:
+        for a in zeroes:
+          for b in range(0,9):
+            if table[b][a[1]] == z:
+              a.append(z)
+        if len(zeroes[0]) == 3:
+          table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+        elif len(zeroes[1]) == 3:
+          table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+  elif len(zeroes) == 3:
+    for z in range(1,10):
+      if z not in na:
+        for a in zeroes:
+          for b in range(0,9):
+            if table[b][a[1]] == z:
+              a.append(z)
+        if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
+          table[zeroes[2][0]][zeroes[2][1]] = zeroes[0][2]
+        elif len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
+          table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+        elif len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
+          table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+
+# For use in solve()
 # Look for 2 values horizontally
 def horzWork(x,y):
   global table
@@ -350,6 +390,8 @@ def solve():
           for c in range(0,10,3):
             if c - b == 3:
               checkBoxes(z,a,b,c)
+  for d in range(0,9):
+    horzLine(d)
   line = ''
   for d in table:
     for e in d:
