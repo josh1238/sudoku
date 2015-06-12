@@ -54,27 +54,32 @@ def checkBoxes(s,f,d,e):
     for z in range(1,10):
       if z not in na:
         table[zeroes[0][0]][zeroes[0][1]] = z # If only 1 0, set it to missing value
+        print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" checkBoxes 1"
   if len(zeroes) == 2:
     for z in range(1,10):
       if z not in na:
         if zeroes[0][1] != zeroes[1][1]:  # If 0s are in different columns
           for a in zeroes:
             for b in range(0,9):
-              if table[b][a[1]] == z: # If missing number is in same row,
+              if table[b][a[1]] == z: # If missing number is in same column,
                 a.append(z)           # Append this value to x,y coords
           if len(zeroes[0]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
+            print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" checkBoxes 2 col"
           if len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+            print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" checkBoxes 2 col"
         if zeroes[0][0] != zeroes[1][0]:  # If 0s are in different rows
           for a in zeroes:
             for b in range(0,9):
-              if table[a[0]][b] == z: # If missing number is in same column,
+              if table[a[0]][b] == z: # If missing number is in same row,
                 a.append(z)           # Append value to x,y coords
           if len(zeroes[0]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
+            print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" checkBoxes 2 row"
           elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+            print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" checkBoxes 2 row"
 #    checkBoxes(s,f,d,e)
   if len(zeroes) == 3:
     for z in range(1,10):
@@ -90,6 +95,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[1]) == 3 and len(zeroes[2]) == 3: # If both others matched
             table[zeroes[0][0]][zeroes[0][1]] = z         # Set value
+            print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" checkBoxes 3"
         if zeroes[1][1] != zeroes[0][1] and zeroes[1][1] != zeroes[2][1]:
           for a in zeroes:
             if a != zeroes[1]:
@@ -100,6 +106,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = z
+            print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(z)+" checkBoxes 3"
         if zeroes[2][1] != zeroes[0][1] and zeroes[2][1] != zeroes[1][1]:
           for a in zeroes:
             if a != zeroes[2]:
@@ -110,6 +117,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
             table[zeroes[2][0]][zeroes[2][1]] = z
+            print "["+str(zeroes[2][0])+","+str(zeroes[2][1])+"] = "+str(z)+" checkBoxes 3"
         # If 0 is alone in row
         if zeroes[0][0] != zeroes[1][0] and zeroes[0][0] != zeroes[2][0]:
           for a in zeroes:
@@ -121,6 +129,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = z
+            print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" checkBoxes 3"
         if zeroes[1][0] != zeroes[0][0] and zeroes[1][0] != zeroes[2][0]:
           for a in zeroes:
             if a != zeroes[1]:
@@ -131,6 +140,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = z
+            print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(z)+" checkBoxes 3"
         if zeroes[2][0] != zeroes[0][0] and zeroes[2][0] != zeroes[1][0]:
           for a in zeroes:
             if a != zeroes[2]:
@@ -141,6 +151,7 @@ def checkBoxes(s,f,d,e):
               pass
           if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
             table[zeroes[2][0]][zeroes[2][1]] = z
+            print "["+str(zeroes[2][0])+","+str(zeroes[2][1])+"] = "+str(z)+" checkBoxes 3"
 #    checkBoxes(s,f,d,e)
 
 # For use in vertWork()
@@ -154,6 +165,7 @@ def compareHorizontal(s,f,y,z):
       qx.append(c)
   if len(qx) == 1:
     table[qx[0]][y] = z   # If 1 0 set as value
+    print "["+str(qx[0])+","+str(y)+"] = "+str(z)+" compareHorizontal 1"
   elif len(qx) == 2:
     for d in qx:
       for e in range(0,9):
@@ -167,6 +179,7 @@ def compareHorizontal(s,f,y,z):
           continue
         else:
           table[g][y] = z
+          print "["+str(g)+","+str(y)+"] = "+str(z)+" compareHorizontal 2"
   elif len(qx) == 3:
     for d in qx:
       for e in range(0,9):
@@ -180,6 +193,7 @@ def compareHorizontal(s,f,y,z):
           continue
         else:
           table[g][y] = z
+          print "["+str(g)+","+str(y)+"] = "+str(z)+" compareHorizontal 3"
     elif len(wrong) == 1:
       pass
 
@@ -193,6 +207,7 @@ def compareVertical(s,f,x,z):
       qy.append(c)
   if len(qy) == 1:
     table[x][qy[0]] = z
+    print "["+str(x)+","+str(qy[0])+"] = "+str(z)+" compareVertical 1"
   elif len(qy) == 2:
     for d in qy:
       for e in range(0,9):
@@ -206,6 +221,7 @@ def compareVertical(s,f,x,z):
           continue
         else:
           table[x][g] = z
+          print "["+str(x)+","+str(g)+"] = "+str(z)+" compareVertical 2"
   elif len(qy) == 3:
     for d in qy:
       for e in range(0,9):
@@ -219,6 +235,7 @@ def compareVertical(s,f,x,z):
           continue
         else:
           table[x][g] = z
+          print "["+str(x)+","+str(g)+"] = "+str(z)+" compareVertical 3"
     elif len(wrong) == 1:
       pass
 
@@ -237,6 +254,7 @@ def horzLine(x):
     for z in range(1,10):
       if z not in na:
         table[zeroes[0][0]][zeroes[0][1]] = z
+        print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" horzLine 1"
   elif len(zeroes) == 2:
     for z in range(1,10):
       if z not in na:
@@ -246,8 +264,10 @@ def horzLine(x):
               a.append(z)
         if len(zeroes[0]) == 3:
           table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+          print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" horzLine 2"
         elif len(zeroes[1]) == 3:
           table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+          print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" horzLine 2"
   elif len(zeroes) == 3:
     for z in range(1,10):
       if z not in na:
@@ -257,10 +277,13 @@ def horzLine(x):
               a.append(z)
         if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
           table[zeroes[2][0]][zeroes[2][1]] = zeroes[0][2]
+          print "["+str(zeroes[2][0])+","+str(zeroes[2][1])+"] = "+str(zeroes[0][2])+" horzLine 2"
         elif len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
           table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]
+          print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" horzLine 2"
         elif len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
           table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
+          print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" horzLine 2"
 
 # For use in solve()
 # Look for 2 values horizontally
@@ -483,7 +506,12 @@ def vertWork(x,y):
         elif ax > 2 and ax < 6:
           compareHorizontal(0,3,qy,z)
 
-while line != last:
-  if '0' in line:
-    printTable()
-    solve()
+while True:
+  if line != last:
+    if '0' in line:
+      printTable()
+      solve()
+    else:
+      sys.exit()
+  else:
+    sys.exit()
