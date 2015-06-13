@@ -66,9 +66,27 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
             print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" checkBoxes 2 col"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
           if len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
             print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" checkBoxes 2 col"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         if zeroes[0][0] != zeroes[1][0]:  # If 0s are in different rows
           for a in zeroes:
             for b in range(0,9):
@@ -77,9 +95,27 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = zeroes[0][2]  # Set other 0 to value
             print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(zeroes[0][2])+" checkBoxes 2 row"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
           elif len(zeroes[1]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = zeroes[1][2]
             print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(zeroes[1][2])+" checkBoxes 2 row"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
 #    checkBoxes(s,f,d,e)
   if len(zeroes) == 3:
     for z in range(1,10):
@@ -96,6 +132,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[1]) == 3 and len(zeroes[2]) == 3: # If both others matched
             table[zeroes[0][0]][zeroes[0][1]] = z         # Set value
             print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         if zeroes[1][1] != zeroes[0][1] and zeroes[1][1] != zeroes[2][1]:
           for a in zeroes:
             if a != zeroes[1]:
@@ -107,6 +152,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = z
             print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         if zeroes[2][1] != zeroes[0][1] and zeroes[2][1] != zeroes[1][1]:
           for a in zeroes:
             if a != zeroes[2]:
@@ -118,6 +172,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
             table[zeroes[2][0]][zeroes[2][1]] = z
             print "["+str(zeroes[2][0])+","+str(zeroes[2][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         # If 0 is alone in row
         if zeroes[0][0] != zeroes[1][0] and zeroes[0][0] != zeroes[2][0]:
           for a in zeroes:
@@ -130,6 +193,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[1]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[0][0]][zeroes[0][1]] = z
             print "["+str(zeroes[0][0])+","+str(zeroes[0][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         if zeroes[1][0] != zeroes[0][0] and zeroes[1][0] != zeroes[2][0]:
           for a in zeroes:
             if a != zeroes[1]:
@@ -141,6 +213,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3 and len(zeroes[2]) == 3:
             table[zeroes[1][0]][zeroes[1][1]] = z
             print "["+str(zeroes[1][0])+","+str(zeroes[1][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
         if zeroes[2][0] != zeroes[0][0] and zeroes[2][0] != zeroes[1][0]:
           for a in zeroes:
             if a != zeroes[2]:
@@ -152,6 +233,15 @@ def checkBoxes(s,f,d,e):
           if len(zeroes[0]) == 3 and len(zeroes[1]) == 3:
             table[zeroes[2][0]][zeroes[2][1]] = z
             print "["+str(zeroes[2][0])+","+str(zeroes[2][1])+"] = "+str(z)+" checkBoxes 3"
+            print "zeroes ="
+            for c in zeroes:
+              print c
+            print "na ="
+            for d in na:
+              print d
+            printTable()
+            raw_input("Press enter to continue...")
+            checkBoxes(s,f,d,e)
 #    checkBoxes(s,f,d,e)
 
 # For use in vertWork()
@@ -506,11 +596,12 @@ def vertWork(x,y):
         elif ax > 2 and ax < 6:
           compareHorizontal(0,3,qy,z)
 
+printTable()
 while True:
   if line != last:
     if '0' in line:
-      printTable()
       solve()
+      printTable()
     else:
       sys.exit()
   else:
