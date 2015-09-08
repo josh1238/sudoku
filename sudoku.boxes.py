@@ -43,13 +43,20 @@ def printTable():
       print '|'
   print '-' * 25
 
+def solve():
+  global table
+  global line
+  global last
+  last = ''
+  for d in table:
+    for e in d:
+      last += str(e)
+  
+
 printTable()
-#while True:
-#  if line != last:
-#    if '0' in line:
-#      solve()
-#      printTable()
-#    else:
-#      sys.exit()
-#  else:
-#    sys.exit()
+while line != last:
+  if '0' not in line:
+    solve()
+    printTable()
+  else:
+    sys.exit()
