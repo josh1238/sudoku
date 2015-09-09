@@ -30,6 +30,13 @@ for y in table:
   for z in y:
     line += str(z)
 
+def checkBoxes():
+  global table
+  for x in range(0,9):
+    num_zeroes = table[x].count(0)
+    if num_zeroes = 1:
+      
+
 # Print the table the box way
 def printTable():
   global table
@@ -51,7 +58,11 @@ def solve():
   for d in table:
     for e in d:
       last += str(e)
-  
+  checkBoxes()
+  line = ''
+  for d in table:
+    for e in d:
+      line += str(e)
 
 printTable()
 while line != last:
