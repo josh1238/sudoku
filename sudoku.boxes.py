@@ -32,10 +32,24 @@ for y in table:
 
 def checkBoxes():
   global table
+  zeroes = []
+  na = []
   for x in range(0,9):
     num_zeroes = table[x].count(0)
-    if num_zeroes = 1:
-      
+    if num_zeroes in [1,2]:
+      na = table[x]
+      na.sort()
+      if num_zeroes == 1:
+        y = table[x].index(0)
+        na = na[1:]
+        for z in range(1,10):
+          if z not in na:
+            table[x][y] = z
+      else:
+        na = na[2:]
+        for z in range(1,10):
+          if z not in na:
+#YOUAREHERE ######################################################################
 
 # Print the table the box way
 def printTable():
