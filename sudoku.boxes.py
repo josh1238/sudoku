@@ -49,7 +49,7 @@ def checkBoxes():
         na = na[2:]
         for z in range(1,10):
           if z not in na:
-#YOUAREHERE ######################################################################
+            
 
 # Print the table the box way
 def printTable():
