@@ -47,9 +47,7 @@ def checkBoxes():
             table[x][y] = z
       else:
         na = na[2:]
-        for z in range(1,10):
-          if z not in na:
-            
+        # test for whether zeroes are in same column or row
 
 # Print the table the box way
 def printTable():
